@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+
+<html>
+   <head>
+	 
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	  
+	  <script type = "text/javascript">
+         function WebSocketTest() {
+            
+            if ("WebSocket" in window) {
+			
+			//    var cert = fs.readFileSync('fixtures/agent1-cert.pem');
+			//    var key = fs.readFileSync('fixtures/agent1-key.pem');
+			   var ws = new WebSocket("wss://localhost:8081");
+				
+               ws.onopen = function() {
+                  
+                  // Web Socket is connected, send data using send()
+                  ws.send("Message to send");
+                  alert("Message is sent...");
+               };
+				
+               ws.onmessage = function (evt) { 
+                  var received_msg = evt.data;
+                  alert("Message is received...");
+               };
+				
+               ws.onclose = function() { 
+                  
+                  // websocket is closed.
+                  alert("Connection is closed..."); 
+               };
+            } else {
+              
+               // The browser doesn't support WebSocket
+               alert("WebSocket NOT supported by your Browser!");
+            }
+		 }
+		 
+
+		 WebSocketTest();
+
+
+      </script>
+		
+   </head>
+   
+   <body>
+	  
+	<div id = "message">
+		
+	</div>
+      
+   </body>
+</html>
